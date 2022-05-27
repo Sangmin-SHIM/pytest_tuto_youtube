@@ -1,4 +1,5 @@
 import pytest
+from django.contrib.auth.models import User
 
 """
 # (1) ---------------------------------------
@@ -45,3 +46,26 @@ def test_new_user(new_user):
     print(new_user.username)
     assert new_user.username == "Test_user"
 """
+
+"""
+# (5) ---------------------------------------
+def test_factory_user(user_factory):
+    user = user_factory.build()
+    print(user.username)
+    assert True
+
+# (6) ---------------------------------------
+@pytest.mark.django_db
+def test_factory_user_db(user_factory):
+    user = user_factory.create()
+    count = User.objects.all().count()
+    print('DB connected Count : ', count)
+    print('User : ', user.username)
+    assert True 
+"""
+
+# (7) ---------------------------------------
+def test_product(db, product_factory):
+    product = product_factory.create()
+    print("Description : ",product.description)
+    assert True
